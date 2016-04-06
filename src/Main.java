@@ -5,6 +5,8 @@ import java.awt.event.*;
 public class Main{
 	public static final int WIN_WIDTH = 500;
 	public static final int WIN_HEIGHT = 300;
+	private static String p1, p2;
+	private static int numRounds;
 	private JFrame frame;
 	private JLabel player1;
 	private JLabel player2;
@@ -67,14 +69,21 @@ public class Main{
         ActionListener action1 = new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                JOptionPane.showMessageDialog(frame, "Okay!!!");
+                //JOptionPane.showMessageDialog(frame, "Okay!!!");
+                p1 = name1.getText();
+                p2 = name2.getText();
+                numRounds = Integer.parseInt(rounds.getText());
+                System.out.println(p1);
+                System.out.println(p2);
+                System.out.println(numRounds);
             }
         };
         cancel = new JButton("Cancel");
         ActionListener action2 = new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                JOptionPane.showMessageDialog(frame, "Cancel!!!");
+                //JOptionPane.showMessageDialog(frame, "Cancel!!!");
+                System.exit(1);
             }
         };
         okay.addActionListener(action1);
