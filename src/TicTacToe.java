@@ -29,6 +29,7 @@ public class TicTacToe extends Thread{
             tile[x][y] = m;
             moveCount++;
             checkWinner(x, y, m);
+        } 
     }
 
     // Checks if there is a winner or call for a draw
