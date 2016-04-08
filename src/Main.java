@@ -5,96 +5,50 @@ import java.awt.event.*;
 public class Main{
 	public static final int WIN_WIDTH = 500;
 	public static final int WIN_HEIGHT = 300;
+	private static final String MENU = "menu";
+	private static final String GAME = "game";
+	private CardLayout cardlayout = new CardLayout();
+	private JPanel mainPanel = new JPanel(cardlayout);
+	private MenuPanel menuPanel = new MenuPanel();
+	private GamePanel gamePanel = new GamePanel();
+	private JFrame frame;
 	private static String p1, p2;
 	private static int numRounds;
-	private JFrame frame;
-	private JLabel player1;
-	private JLabel player2;
-	private JLabel bestOf;
-	private JTextField name1;
-	private JTextField name2;
-	private JTextField rounds;
-	private JButton okay;
-	private JButton cancel;
+	
 	public Main(){
+		mainPanel.add(menuPanel.getMainComponent(), MENU);
+		mainPanel.add(gamePanel.getMainComponent(), GAME);
+
+		menuPanel.addOkayActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                p1 = menuPanel.getName1();
+                p2 = menuPanel.getName2();
+                numRounds = Integer.parseInt(menuPanel.getRounds());
+                if((numRounds%2) == 0){
+                	JOptionPane.showMessageDialog(frame,"Best Of Rounds should be ODD number!");
+                }
+                else cardlayout.show(mainPanel, GAME);
+            }
+		});
+	}
+	private JComponent getMainComponent(){
+		return mainPanel;
+	}
+	public static void createUI(){
 		JFrame frame = new JFrame("Tic-tac-toe");
 		frame.setPreferredSize(new Dimension(WIN_WIDTH,WIN_HEIGHT));
-		frame.add(addComponents());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setLocationRelativeTo(null);
+		frame.getContentPane().add(new Main().getMainComponent());
 		frame.pack();
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
-	private JPanel addComponents(){
-		JPanel panel = new JPanel();
-		panel.setLayout(new BorderLayout());
-
-        panel.add(createCenterPanel(), BorderLayout.CENTER);
-        panel.add(createLowerPanel(), BorderLayout.PAGE_END);
-    	return panel;
-	}
-	private JPanel createCenterPanel(){
-		JPanel centerPanel = new JPanel();
-		JPanel player1Panel = new JPanel();
-		JPanel player2Panel = new JPanel();
-		JPanel bestOfPanel = new JPanel();
-
-		centerPanel.setLayout(new FlowLayout());
-		player1 = new JLabel("Player 1 Name: ");
-		name1 = new JTextField(15);
-		player2 = new JLabel("Player 2 Name: ");
-		name2 = new JTextField(15);
-		bestOf = new JLabel("Best of: ");
-		rounds= new JTextField(15);
-
-		player1Panel.add(player1);
-		player1Panel.add(name1);
-		player2Panel.add(player2);
-		player2Panel.add(name2);
-		bestOfPanel.add(bestOf);
-		bestOfPanel.add(rounds);
-		
-        centerPanel.add(player1Panel);
-        centerPanel.add(player2Panel);
-        centerPanel.add(bestOfPanel);
-
-		return centerPanel;
-	}
-	private JPanel createLowerPanel(){
-		JPanel lowerPanel = new JPanel();
-		JPanel okayPanel = new JPanel();
-
-		lowerPanel.setLayout(new GridLayout(1, 3));
-		okay = new JButton("OK");
-        ActionListener action1 = new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e){
-                //JOptionPane.showMessageDialog(frame, "Okay!!!");
-                p1 = name1.getText();
-                p2 = name2.getText();
-                numRounds = Integer.parseInt(rounds.getText());
-                System.out.println(p1);
-                System.out.println(p2);
-                System.out.println(numRounds);
-            }
-        };
-        cancel = new JButton("Cancel");
-        ActionListener action2 = new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e){
-                //JOptionPane.showMessageDialog(frame, "Cancel!!!");
-                System.exit(1);
-            }
-        };
-        okay.addActionListener(action1);
-        cancel.addActionListener(action2);
-		okayPanel.add(okay);
-		okayPanel.add(cancel);
-
-		lowerPanel.add(okayPanel);
-		return lowerPanel;
-	}
 	public static void main(String[] args){
-		new Main();
+		java.awt.EventQueue.invokeLater(new Runnable() {
+			public void run(){
+				createUI();
+			}
+		});
 	}
 }
