@@ -112,7 +112,7 @@ public class GamePanel {
 		ActionListener changeLetter = new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				if (countRound%2 == 1) nextTurn = counter % 2 == 1 ? playerOne : playerTwo;
+				if(countRound%2 == 1)	nextTurn = counter % 2 == 1 ? playerOne : playerTwo;
 				else nextTurn = counter % 2 == 1 ? playerTwo : playerOne;
 				if(button == one)
 					ttt.move(0, 0, nextTurn.getMove());
@@ -137,10 +137,9 @@ public class GamePanel {
 				button.setEnabled(false);
 
 				counter++;
-				nextTurn = counter % 2 == 1 ? playerOne : playerTwo;
-				if (counter%2 == 1) turn.setText("Turn " + counter  + ": " + nextTurn.getName());
-				else turn.setText("Turn " + counter  + ": " + nextTurn.getName());
-
+				if(countRound%2 == 1)	nextTurn = counter % 2 == 1 ? playerOne : playerTwo;
+				else nextTurn = counter % 2 == 1 ? playerTwo : playerOne;
+				turn.setText("Turn " + counter  + ": " + nextTurn.getName());
 				if(ttt.getWinner() != null) {
 					winner = ttt.getWinner() == TicTacToe.Moves.O ? playerOne : playerTwo;
 					JOptionPane.showMessageDialog(mainPanel, "Winner: " + winner.getName());
@@ -173,8 +172,9 @@ public class GamePanel {
 	public void resetGame() {
 		countRound++;
 		game.setText("Game " + (countRound) + " out of " + numRounds);
-		player1.setText((playerOne.getName() + "(P1): " + playerOne.getScore()));
-		player2.setText((playerTwo.getName() + "(P2): " + playerTwo.getScore()));
+		player1.setText((playerOne.getName() + " (P1): " + playerOne.getScore()));
+		player2.setText((playerTwo.getName() + " (P2): " + playerTwo.getScore()));
+		ttt = new TicTacToe();
 		counter = 1;
 		one.setEnabled(true);
 		two.setEnabled(true);
