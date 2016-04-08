@@ -12,6 +12,8 @@ public class GamePanel {
 	private JLabel player2;
 	private JLabel game;
 	private JButton one, two, three, four, five, six, seven, eight, nine;
+	private Player p1, p2;
+	private boolean whoseTurn = true; // "true" = player 1 = o
 	private MenuPanel menuPanel = new MenuPanel();
 
 	public GamePanel(){
@@ -35,6 +37,17 @@ public class GamePanel {
 		seven = new JButton("");
 		eight = new JButton("");
 		nine = new JButton("");
+
+		addingAL(one);
+		addingAL(two);
+		addingAL(three);
+		addingAL(four);
+		addingAL(five);
+		addingAL(six);
+		addingAL(seven);
+		addingAL(eight);
+		addingAL(nine);
+
 		player1 = new JLabel("(P1): ");
 		game = new JLabel("Game 3 out 5");
 		player2 = new JLabel("(P2): ");
@@ -60,6 +73,24 @@ public class GamePanel {
 	}
 	public JComponent getMainComponent(){
 		return mainPanel;
+	}
+
+	public void addingAL(final JButton button){
+		ActionListener changeLetter = new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				if (whoseTurn == true){ //player 1's turn
+					button.setText("O");
+					whoseTurn = false;
+				}
+				else {
+					button.setText("X");
+					whoseTurn = true;
+				}
+				button.setEnabled(false);
+			}
+		};
+		button.addActionListener(changeLetter);
 	}
 
 }
