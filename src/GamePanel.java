@@ -18,7 +18,6 @@ public class GamePanel {
 	private JButton one, two, three, four, five, six, seven, eight, nine;
 	private int counter = 1;
 	private int countRound = 1;
-	private boolean whoseTurn = true; // "true" = player 1 = o
 	private TicTacToe ttt = new TicTacToe();
 	private Player playerOne;
 	private Player playerTwo;
@@ -112,15 +111,6 @@ public class GamePanel {
 		ActionListener changeLetter = new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				// if (whoseTurn == true){ //player 1's turn
-				// 	button.setText("O");
-				// 	whoseTurn = false;
-				// }
-				// else {
-				// 	button.setText("X");
-				// 	whoseTurn = true;
-				// }
-				// button.setEnabled(false);
 				nextTurn = counter % 2 == 1 ? playerOne : playerTwo;
 				if(button == one)
 					ttt.move(0, 0, nextTurn.getMove());
@@ -169,6 +159,10 @@ public class GamePanel {
 		};
 		button.addActionListener(changeLetter);
 	}
+
+	/*
+	resetGame: Resets the state of the TicTacToe board and turns.
+	*/
 	public void resetGame() {
 		countRound++;
 		game.setText("Game " + (countRound) + " out of " + numRounds);
@@ -196,6 +190,9 @@ public class GamePanel {
 		nine.setText("");
 	}
 
+	/*
+	gameOver: Checks if a Player has more than half the wins of the number of rounds.
+	*/
 	public boolean gameOver() {
 		if(playerOne.getScore() == (numRounds / 2) + 1 ||
             playerTwo.getScore() == (numRounds / 2) + 1 ||

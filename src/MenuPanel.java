@@ -65,25 +65,16 @@ public class MenuPanel{
 
 		okay = new JButton("OK");
         cancel = new JButton("Cancel");
-
-		// player1Panel.add(player1);
-		// player1Panel.add(name1);
-		// player2Panel.add(player2);
-		// player2Panel.add(name2);
-		// bestOfPanel.add(bestOf);
-		// bestOfPanel.add(rounds);
 		okayPanel.add(okay);
 		okayPanel.add(cancel);
 
+		// The action listener for the CANCEL button; it exits the program.
 		cancel.addActionListener(new ActionListener() {
 			@Override
             public void actionPerformed(ActionEvent e){
                 System.exit(1);
             }
 		});
-		// centerPanel.add(player1Panel);
-		// centerPanel.add(player2Panel);
-		// centerPanel.add(bestOfPanel);
 		upperPanel.add(welcomeLb);
 		centerPanel.add(player1);
 		centerPanel.add(name1);
