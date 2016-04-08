@@ -31,36 +31,48 @@ public class GamePanel {
 		playerTwo = new Player(p2, TicTacToe.Moves.X);
 		System.out.println(p1 + " " + p2);
 		mainPanel = new JPanel();
-		mainPanel.setBackground(new Color(0,200,250));
 		JPanel leftPanel = new JPanel();
 		JPanel rightPanel = new JPanel();
 		topPanel = new JPanel();
 		centerPanel = new JPanel();
 		bottomPanel = new JPanel();
 		mainPanel.setLayout(new BorderLayout(100, 0));
+		mainPanel.setBackground(new Color(85,98,112));
 		topPanel.setLayout(new FlowLayout());
+		topPanel.setBackground(new Color(85,98,112));
 		centerPanel.setLayout(new GridLayout(3,3));
-		bottomPanel.setLayout(new GridLayout(1,3));
+		bottomPanel.setLayout(new FlowLayout());
+		bottomPanel.setBackground(new Color(85,98,112));
 		turn = new JLabel("Turn " + counter  + ": " + playerOne.getName());
+		turn.setForeground(new Color(255,255,255));
+
 		one = new JButton("");
 		one.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
-		one.setForeground(new Color(10, 10, 212));
+		one.setBackground(new Color(186,228,229));
 		two = new JButton("");
 		two.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
+		two.setBackground(new Color(186,228,229));
 		three = new JButton("");
 		three.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
+		three.setBackground(new Color(186,228,229));
 		four = new JButton("");
 		four.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
+		four.setBackground(new Color(186,228,229));
 		five = new JButton("");
 		five.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
+		five.setBackground(new Color(186,228,229));
 		six = new JButton("");
 		six.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
+		six.setBackground(new Color(186,228,229));
 		seven = new JButton("");
 		seven.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
+		seven.setBackground(new Color(186,228,229));
 		eight = new JButton("");
 		eight.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
+		eight.setBackground(new Color(186,228,229));
 		nine = new JButton("");
 		nine.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
+		nine.setBackground(new Color(186,228,229));
 
 		addingAL(one);
 		addingAL(two);
@@ -72,10 +84,15 @@ public class GamePanel {
 		addingAL(eight);
 		addingAL(nine);
 
-		player1 = new JLabel(playerOne.getName() + "(P1): " + playerOne.getScore());
-		game = new JLabel("Game " + countRound + " out of " + numRounds);
+		player1 = new JLabel(playerOne.getName() + "(P1): " + playerOne.getScore() + " | ");
+		player1.setForeground(new Color(255,255,255));
+		game = new JLabel("Game " + countRound + " out of " + numRounds + " | ");
+		game.setForeground(new Color(255,255,255));
 		player2 = new JLabel(playerTwo.getName() + "(P2): " + playerTwo.getScore());
+		player2.setForeground(new Color(255,255,255));
+
 		topPanel.add(turn);
+
 		centerPanel.add(one);
 		centerPanel.add(two);
 		centerPanel.add(three);
@@ -86,9 +103,11 @@ public class GamePanel {
 		centerPanel.add(eight);
 		centerPanel.add(nine);
 		centerPanel.setPreferredSize(new Dimension(50, 50));
+
 		bottomPanel.add(player1);
 		bottomPanel.add(game);
 		bottomPanel.add(player2);
+
 		mainPanel.add(leftPanel, BorderLayout.LINE_START);
 		mainPanel.add(rightPanel, BorderLayout.LINE_END);
 		mainPanel.add(topPanel, BorderLayout.PAGE_START);
@@ -134,6 +153,8 @@ public class GamePanel {
 					ttt.move(2, 2, nextTurn.getMove());
 				ttt.printTile();
 				button.setText(nextTurn.getMove().toString());
+				button.setBackground(new Color(102,102,102));
+				button.setForeground(new Color(255,255,255));
 				button.setEnabled(false);
 
 				counter++;
@@ -194,6 +215,16 @@ public class GamePanel {
 		seven.setText("");
 		eight.setText("");
 		nine.setText("");
+		one.setBackground(new Color(186,228,229));		
+		two.setBackground(new Color(186,228,229));
+		three.setBackground(new Color(186,228,229));
+		four.setBackground(new Color(186,228,229));
+		five.setBackground(new Color(186,228,229));
+		six.setBackground(new Color(186,228,229));
+		seven.setBackground(new Color(186,228,229));
+		eight.setBackground(new Color(186,228,229));
+		nine.setBackground(new Color(186,228,229));
+
 	}
 
 	/*
