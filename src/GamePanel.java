@@ -12,7 +12,8 @@ public class GamePanel {
 	private JLabel player2;
 	private JLabel game;
 	private JButton one, two, three, four, five, six, seven, eight, nine;
-	private MenuPanel menuPanel = new MenuPanel();
+	private int counter = 1;
+
 
 	public GamePanel(){
 		mainPanel = new JPanel();
@@ -25,7 +26,7 @@ public class GamePanel {
 		topPanel.setLayout(new FlowLayout());
 		centerPanel.setLayout(new GridLayout(3,3));
 		bottomPanel.setLayout(new GridLayout(1,3));
-		turn = new JLabel("Turn <i>: "+menuPanel.getName1()+"Player");
+		turn = new JLabel("Turn " + counter  + ": ");
 		one = new JButton("");
 		two = new JButton("");
 		three = new JButton("");

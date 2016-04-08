@@ -12,9 +12,9 @@ public class Main{
 	private MenuPanel menuPanel = new MenuPanel();
 	private GamePanel gamePanel = new GamePanel();
 	private JFrame frame;
-	private static String p1, p2;
 	private static int numRounds;
-	
+
+
 	public Main(){
 		mainPanel.add(menuPanel.getMainComponent(), MENU);
 		mainPanel.add(gamePanel.getMainComponent(), GAME);
@@ -22,13 +22,13 @@ public class Main{
 		menuPanel.addOkayActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                p1 = menuPanel.getName1();
-                p2 = menuPanel.getName2();
-                numRounds = Integer.parseInt(menuPanel.getRounds());
+				numRounds = Integer.parseInt(menuPanel.getRounds());
                 if((numRounds%2) == 0){
                 	JOptionPane.showMessageDialog(frame,"Best Of Rounds should be ODD number!");
                 }
-                else cardlayout.show(mainPanel, GAME);
+                else {
+					cardlayout.show(mainPanel, GAME);
+				}
             }
 		});
 	}
