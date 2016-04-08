@@ -19,7 +19,7 @@ public class Main{
 	private static int numRounds;
 
 	/*
-	Main: gets the components/GUI passed from MenuPanel and GamePanel 
+	Main: gets the components/GUI passed from MenuPanel and GamePanel
 	*/
 	public Main(){
 		mainPanel.add(menuPanel.getMainComponent(), MENU);
