@@ -20,9 +20,7 @@ public class MenuPanel{
 	private JTextField rounds;
 	private JButton okay;
 	private JButton cancel;
-	public Player playerOne;
-	public Player playerTwo;
-	public int gameRounds;
+
 
 	public MenuPanel(){
 		mainPanel = new JPanel();

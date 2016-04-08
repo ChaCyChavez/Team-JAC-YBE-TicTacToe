@@ -29,9 +29,6 @@ public class TicTacToe extends Thread{
             tile[x][y] = m;
             moveCount++;
             checkWinner(x, y, m);
-        } else {
-            System.out.println("Already Taken");
-        }
     }
 
     // Checks if there is a winner or call for a draw
