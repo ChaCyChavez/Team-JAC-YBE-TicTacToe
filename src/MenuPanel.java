@@ -1,3 +1,7 @@
+/*
+Class MenuPanel: Shows the GUI for getting the information of the two Players
+as well as the odd number of rounds they want to play.
+*/
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -21,7 +25,10 @@ public class MenuPanel{
 	private JButton okay;
 	private JButton cancel;
 
-
+	/*
+	MenuPanel: creates the window for getting the Players' names as well as
+	the number of games they would like to play
+	*/
 	public MenuPanel(){
 		mainPanel = new JPanel();
 		upperPanel = new JPanel();
@@ -90,18 +97,39 @@ public class MenuPanel{
 		mainPanel.add(centerPanel, BorderLayout.CENTER);
 		mainPanel.add(lowerPanel, BorderLayout.PAGE_END);
 	}
+
+	/*
+	addOkayActionListener: sets the "OKAY" button's
+	action listener in Main
+	*/
 	public void addOkayActionListener(ActionListener listener){
 		okay.addActionListener(listener);
 	}
+
+	/*
+	getMainComponent: returns the mainPanel (this GUI) to Main
+	*/
 	public JComponent getMainComponent(){
 		return mainPanel;
 	}
+
+	/*
+	getName1: gets the name that is in the "name1" text field
+	*/
 	public String getName1(){
 		return name1.getText();
 	}
+
+	/*
+	getName2: gets the name that is in the "name2" text field
+	*/
 	public String getName2(){
 		return name2.getText();
 	}
+
+	/*
+	getRounds: gets the number of rounds in the "rounds" text field
+	*/
 	public String getRounds(){
 		return rounds.getText();
 	}

@@ -1,4 +1,9 @@
-
+/*
+Class TicTacToe: Simulates the actual game of Tic-Tac-Toe.
+It has four threads -- one for checking the rows,
+one for checking the columns, and two for checking the
+diagonals for a win.
+*/
 public class TicTacToe extends Thread{
     public enum Moves{B, X, O}; // B -> blank
     private final int SIZE = 3;
@@ -6,14 +11,14 @@ public class TicTacToe extends Thread{
     private int moveCount;
     private Moves winner;
 
-    // Constructor
+    // This serves as a constructor of the Tic-Tac-Toe board.
     public TicTacToe() {
         createTile();
         this.moveCount = 1;
     }
 
     private void createTile() {
-        // Creates a blank TicTacToe tile
+        // Creates a blank TicTacToe tile.
         this.tile = new Moves[SIZE][SIZE];
 
         for(int i = 0; i < SIZE; i++) {
@@ -24,7 +29,7 @@ public class TicTacToe extends Thread{
     }
 
     public void move(int x, int y, Moves m) {
-        // Checks if the tile is blank
+        // Checks if the tile is blank.
         if(tile[x][y] == Moves.B) {
             tile[x][y] = m;
             moveCount++;
@@ -32,7 +37,7 @@ public class TicTacToe extends Thread{
         } 
     }
 
-    // Checks if there is a winner or call for a draw
+    // Checks if there is a winner or call for a draw.
     private void checkWinner(final int x, final int y, final Moves m) {
         Thread[] checker = new Thread[4];
 
@@ -69,7 +74,7 @@ public class TicTacToe extends Thread{
             }
         };
 
-        // Starts the threads
+        // Starts the threads.
         for(int i = 0; i < 4; i++) {
             try {
                 checker[i].start();
@@ -122,14 +127,17 @@ public class TicTacToe extends Thread{
         return m;
     }
 
+    // Returns the winner of the round.
     public Moves getWinner() {
         return this.winner;
     }
 
+    // Returns the number of moves both players have made.
     public int getMoveCount() {
         return this.moveCount;
     }
 
+    // Prints the 3x3 grid on the console.
     public void printTile() {
         System.out.println("\t\t+---+---+---+");
         for(int i = 0; i < SIZE; i++) {
