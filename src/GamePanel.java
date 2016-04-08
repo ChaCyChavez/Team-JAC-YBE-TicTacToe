@@ -13,14 +13,17 @@ public class GamePanel {
 	private JLabel game;
 	private JButton one, two, three, four, five, six, seven, eight, nine;
 	private int counter = 1;
+	private int countRound = 1;
 	private boolean whoseTurn = true; // "true" = player 1 = o
 	private TicTacToe ttt = new TicTacToe();
 	private Player playerOne;
 	private Player playerTwo;
 	private Player nextTurn;
 	private boolean gameOver;
-
-	public GamePanel(String p1, String p2){
+	private Player winner;
+	private int numRounds;
+	public GamePanel(String p1, String p2, int numRounds){
+		this.numRounds = numRounds;
 		playerOne = new Player(p1, TicTacToe.Moves.O);
 		playerTwo = new Player(p2, TicTacToe.Moves.X);
 		System.out.println(p1 + " " + p2);
@@ -36,14 +39,24 @@ public class GamePanel {
 		bottomPanel.setLayout(new GridLayout(1,3));
 		turn = new JLabel("Turn " + counter  + ": " + playerOne.getName());
 		one = new JButton("");
+		one.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
+		one.setForeground(new Color(10, 10, 212));
 		two = new JButton("");
+		two.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
 		three = new JButton("");
+		three.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
 		four = new JButton("");
+		four.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
 		five = new JButton("");
+		five.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
 		six = new JButton("");
+		six.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
 		seven = new JButton("");
+		seven.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
 		eight = new JButton("");
+		eight.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
 		nine = new JButton("");
+		nine.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
 
 		addingAL(one);
 		addingAL(two);
@@ -55,9 +68,9 @@ public class GamePanel {
 		addingAL(eight);
 		addingAL(nine);
 
-		player1 = new JLabel("(P1): " + playerOne.getName());
-		game = new JLabel("Game 1 out 5");
-		player2 = new JLabel("(P2): " + playerTwo.getName());
+		player1 = new JLabel(playerOne.getName() + "(P1): " + playerOne.getScore());
+		game = new JLabel("Game " + countRound + " out of " + numRounds);
+		player2 = new JLabel(playerTwo.getName() + "(P2): " + playerTwo.getScore());
 		topPanel.add(turn);
 		centerPanel.add(one);
 		centerPanel.add(two);
@@ -117,18 +130,66 @@ public class GamePanel {
 				ttt.printTile();
 				button.setText(nextTurn.getMove().toString());
 				button.setEnabled(false);
+
 				counter++;
 				nextTurn = counter % 2 == 1 ? playerOne : playerTwo;
 				turn.setText("Turn " + counter  + ": " + nextTurn.getName());
 				if(ttt.getWinner() != null) {
-					Player winner = ttt.getWinner() == TicTacToe.Moves.O ? playerOne : playerTwo;
+					winner = ttt.getWinner() == TicTacToe.Moves.O ? playerOne : playerTwo;
 					JOptionPane.showMessageDialog(mainPanel, "Winner: " + winner.getName());
+					winner.addScore();
+					resetGame();
+
 				} else if(ttt.getMoveCount() > 9) {
 					JOptionPane.showMessageDialog(mainPanel, "Draw!");
+					playerOne.addScore();
+					playerTwo.addScore();
+					resetGame();
 				}
+				if(gameOver()) {
+					winner = playerOne.getScore() > playerTwo.getScore() ? playerOne : playerTwo;
+					JOptionPane.showMessageDialog(mainPanel, " Overall Winner: " + winner.getName());
+					System.exit(0);
+				}
+
 			}
 		};
 		button.addActionListener(changeLetter);
+	}
+	public void resetGame() {
+		countRound++;
+		game.setText("Game " + (countRound) + " out of " + numRounds);
+		player1.setText((playerOne.getName() + "(P1): " + playerOne.getScore()));
+		player2.setText((playerTwo.getName() + "(P2): " + playerTwo.getScore()));
+		ttt = new TicTacToe();
+		counter = 1;
+		one.setEnabled(true);
+		two.setEnabled(true);
+		three.setEnabled(true);
+		four.setEnabled(true);
+		five.setEnabled(true);
+		six.setEnabled(true);
+		seven.setEnabled(true);
+		eight.setEnabled(true);
+		nine.setEnabled(true);
+		one.setText("");
+		two.setText("");
+		three.setText("");
+		four.setText("");
+		five.setText("");
+		six.setText("");
+		seven.setText("");
+		eight.setText("");
+		nine.setText("");
+	}
+
+	public boolean gameOver() {
+		if(playerOne.getScore() == (numRounds / 2) + 1 ||
+            playerTwo.getScore() == (numRounds / 2) + 1 ||
+            countRound == numRounds) {
+                return true;
+        }
+        return false;
 	}
 
 }

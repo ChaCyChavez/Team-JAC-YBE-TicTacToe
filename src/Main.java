@@ -21,13 +21,13 @@ public class Main{
             @Override
             public void actionPerformed(ActionEvent e){
 				numRounds = Integer.parseInt(menuPanel.getRounds());
-				gamePanel = new GamePanel(menuPanel.getName1(), menuPanel.getName2());
+				gamePanel = new GamePanel(menuPanel.getName1(), menuPanel.getName2(), numRounds);
 				mainPanel.add(gamePanel.getMainComponent(), GAME);
                 if((numRounds%2) == 0){
                 	JOptionPane.showMessageDialog(frame,"Best Of Rounds should be ODD number!");
                 }
                 else {
-						cardlayout.show(mainPanel, GAME);
+					cardlayout.show(mainPanel, GAME);
 				}
             }
 		});
