@@ -1,3 +1,7 @@
+/*
+Class GamePanel: Shows the GUI for the Tic-Tac-Toe game itself.
+*/
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -20,6 +24,9 @@ public class GamePanel {
 	private Player nextTurn;
 	private boolean gameOver;
 
+	/*
+	GamePanel: creates the window for the Tic-Tac-Toe game, including the 3x3 grid and game information.
+	*/
 	public GamePanel(String p1, String p2){
 		playerOne = new Player(p1, TicTacToe.Moves.O);
 		playerTwo = new Player(p2, TicTacToe.Moves.X);
@@ -78,10 +85,19 @@ public class GamePanel {
 		mainPanel.add(centerPanel, BorderLayout.CENTER);
 		mainPanel.add(bottomPanel, BorderLayout.PAGE_END);
 	}
+
+	/*
+	getMainComponent: returns the mainPanel (this GUI) to Main
+	*/
 	public JComponent getMainComponent(){
 		return mainPanel;
 	}
 
+	/*
+	addingAL: Adds an action listener to each button. Each button,
+	when clicked, changes the value of a cell in a 3x3 matrix in
+	TicTacToe, shows the marker of the Player (O or X), and is disabled.
+	*/
 	public void addingAL(final JButton button){
 		ActionListener changeLetter = new ActionListener(){
 			@Override

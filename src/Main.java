@@ -1,3 +1,7 @@
+/*
+Class Main: Runs the game Tic-Tac-Toe.
+*/
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -14,7 +18,9 @@ public class Main{
 	private JFrame frame;
 	private static int numRounds;
 
-
+	/*
+	Main: gets the components/GUI passed from MenuPanel and GamePanel 
+	*/
 	public Main(){
 		mainPanel.add(menuPanel.getMainComponent(), MENU);
 		menuPanel.addOkayActionListener(new ActionListener(){
@@ -32,9 +38,17 @@ public class Main{
             }
 		});
 	}
+
+	/*
+	getMainComponent: gets the Panel from MenuPanel
+	*/
 	private JComponent getMainComponent(){
 		return mainPanel;
 	}
+
+	/*
+	createUI: creates the User Interface for the Tic-Tac-Toe game
+	*/
 	public static void createUI(){
 		JFrame frame = new JFrame("Tic-tac-toe");
 		frame.setPreferredSize(new Dimension(WIN_WIDTH,WIN_HEIGHT));
@@ -44,6 +58,10 @@ public class Main{
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
+
+	/*
+	main: Runs the Tic-Tac-Toe game.
+	*/
 	public static void main(String[] args){
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run(){
