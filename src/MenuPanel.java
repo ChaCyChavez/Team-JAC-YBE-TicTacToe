@@ -44,20 +44,24 @@ public class MenuPanel{
 
 		welcomeLb = new JLabel("Welcome to Tic-Tac-Toe!");
 		welcomeLb.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 16));
+		welcomeLb.setForeground(new Color(255,255,255));
 
 		player1 = new JLabel("Player 1 Name: ");
+		player1.setForeground(new Color(255,255,255));
 		name1 = new JTextField(25);
 		name1.setHorizontalAlignment(JTextField.CENTER);
         name1.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 16));
         name1.setMargin(new Insets(2, 2, 2, 2));
 
 		player2 = new JLabel("Player 2 Name: ");
+		player2.setForeground(new Color(255,255,255));
 		name2 = new JTextField(25);
 		name2.setHorizontalAlignment(JTextField.CENTER);
         name2.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 16));
         name2.setMargin(new Insets(2, 2, 2, 2));
 
 		bestOf = new JLabel("Best of (Should be odd no.): ");
+		bestOf.setForeground(new Color(255,255,255));
 		rounds= new JTextField(20);
 		rounds.setHorizontalAlignment(JTextField.CENTER);
         rounds.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 16));
@@ -87,6 +91,10 @@ public class MenuPanel{
 		mainPanel.add(upperPanel, BorderLayout.PAGE_START);
 		mainPanel.add(centerPanel, BorderLayout.CENTER);
 		mainPanel.add(lowerPanel, BorderLayout.PAGE_END);
+		upperPanel.setBackground(new Color(85,98,112));
+		centerPanel.setBackground(new Color(85,98,112));
+		lowerPanel.setBackground(new Color(85,98,112));
+		okayPanel.setBackground(new Color(85,98,112));
 	}
 
 	/*
